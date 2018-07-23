@@ -39,3 +39,6 @@ python style_transfer.py --test ../data/yelp/sentiment.test --output ../tmp/sent
 
 ## Dependencies
 Python >= 2.7, TensorFlow 1.3.0
+
+## What I had to do to get it working:
+On the spoclab machine, I had to downgrade the CUDA so that it took CUDA 8 runtime. This involved updating the path and doing conda install cudatoolkit=8
