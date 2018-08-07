@@ -227,7 +227,8 @@ if __name__ == '__main__':
         test1 = load_sent(args.test + '.1')
 
     config = tf.ConfigProto()
-    config.per_process_gpu_memory_fraction = 0.5
+
+    config.gpu_options.per_process_gpu_memory_fraction = 0.5
 
     # config.gpu_options.allow_growth = True
     with tf.Session(config=config) as sess:
