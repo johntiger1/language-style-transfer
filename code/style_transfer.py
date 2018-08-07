@@ -73,7 +73,7 @@ class Model(object):
             tf.zeros([self.batch_size, dim_z])], 1)
         cell_e = create_cell(dim_h, n_layers, self.dropout)
         _, z = tf.nn.dynamic_rnn(cell_e, enc_inputs,
-            initial_state=init_state, scope='encoder', sequence_length=tf.zeros([50])) #wack, it takes a vector to convert to a num
+            initial_state=init_state, scope='encoder') #wack, it takes a vector to convert to a num , sequence_length=tf.zeros([128])
         z = z[:, dim_y:]
 
         #cell_e = create_cell(dim_z, n_layers, self.dropout)
@@ -227,7 +227,9 @@ if __name__ == '__main__':
         test1 = load_sent(args.test + '.1')
 
     config = tf.ConfigProto()
-    config.gpu_options.allow_growth = True
+    config.per_process_gpu_memory_fraction = 0.5
+
+    # config.gpu_options.allow_growth = True
     with tf.Session(config=config) as sess:
         model = create_model(sess, args, vocab)
 
