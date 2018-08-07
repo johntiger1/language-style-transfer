@@ -1,0 +1,5 @@
+Run this command to test it on your "medical" dataset
+Note that you should remove medical.vocab when you want to start from a new dictionary
+
+python style_transfer.py --train ../data/med/medical.train --dev ../data/med/medical.dev --output ../tmp/medical.dev --vocab ../tmp/medical.vocab --model ../tmp/model
+
