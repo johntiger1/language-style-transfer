@@ -44,7 +44,7 @@ def load_arguments():
             default=1000)
     argparser.add_argument('--max_seq_length',
             type=int,
-            default=20)
+            default=50)
     argparser.add_argument('--max_train_size',
             type=int,
             default=-1)
@@ -90,7 +90,7 @@ def load_arguments():
             default='1,2,3,4,5')
     argparser.add_argument('--n_filters',
             type=int,
-            default=128)
+            default=64)
 
     args = argparser.parse_args()
 

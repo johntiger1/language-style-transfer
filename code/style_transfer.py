@@ -18,6 +18,8 @@ import beam_search, greedy_decoding
 class Model(object):
 
     def __init__(self, args, vocab):
+
+        # hidden state comprises both the style and content vectors...
         dim_y = args.dim_y
         dim_z = args.dim_z
         dim_h = dim_y + dim_z
@@ -25,6 +27,8 @@ class Model(object):
         n_layers = args.n_layers
         max_len = args.max_seq_length
         filter_sizes = [int(x) for x in args.filter_sizes.split(',')]
+
+        # print("filter sizes is" filter_sizes)
         n_filters = args.n_filters
         beta1, beta2 = 0.5, 0.999
         grad_clip = 30.0
@@ -69,7 +73,7 @@ class Model(object):
             tf.zeros([self.batch_size, dim_z])], 1)
         cell_e = create_cell(dim_h, n_layers, self.dropout)
         _, z = tf.nn.dynamic_rnn(cell_e, enc_inputs,
-            initial_state=init_state, scope='encoder')
+            initial_state=init_state, scope='encoder', sequence_length=tf.zeros([50])) #wack, it takes a vector to convert to a num
         z = z[:, dim_y:]
 
         #cell_e = create_cell(dim_z, n_layers, self.dropout)
