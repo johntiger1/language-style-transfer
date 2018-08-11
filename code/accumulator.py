@@ -1,4 +1,6 @@
+# from style_transfer import LOG_FILE_NAME
 
+LOG_FILE_NAME = "only1gpu.txt"
 class Accumulator(object):
     def __init__(self, div, names):
         self.div = div
@@ -13,7 +15,7 @@ class Accumulator(object):
         for i in range(self.n):
             self.values[i] += values[i] / self.div
 
-    def output(self, s='', log_file ="mylog.txt"):
+    def output(self, s='', log_file =LOG_FILE_NAME):
         if s:
             s += ' '
         for i in range(self.n):

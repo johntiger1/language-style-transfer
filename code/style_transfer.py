@@ -8,7 +8,7 @@ import numpy as np
 import tensorflow as tf
 
 from vocab import Vocabulary, build_vocab
-from accumulator import Accumulator
+from accumulator import Accumulator, LOG_FILE_NAME
 from options import load_arguments
 from file_io import load_sent, write_sent
 from utils import *
@@ -202,6 +202,8 @@ def create_model(sess, args, vocab):
         sess.run(tf.global_variables_initializer())
     return model
 
+# LOG_FILE_NAME ="only1gpu.txt"
+
 if __name__ == '__main__':
     args = load_arguments()
 
@@ -232,6 +234,10 @@ if __name__ == '__main__':
     )
 
     config.gpu_options.allow_growth = True
+
+    with open(LOG_FILE_NAME, "a") as file:
+        file.write("%s\n" % ("we FINNA START"))
+
     with tf.Session(config=config) as sess:
         model = create_model(sess, args, vocab)
 
@@ -261,6 +267,12 @@ if __name__ == '__main__':
             for epoch in range(1, 1+args.max_epochs):
                 print '--------------------epoch %d--------------------' % epoch
                 print 'learning_rate:', learning_rate, '  gamma:', gamma
+
+                with open(LOG_FILE_NAME, "a") as file:
+                    epoch = '--------------------epoch %d--------------------' % epoch
+                    lr = 'learning_rate:', learning_rate, '  gamma:', gamma
+
+                    file.write("%s\n%s\n" % (epoch, lr))
 
                 for batch in batches:
                     feed_dict = feed_dictionary(model, batch, rho, gamma,
