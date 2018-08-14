@@ -271,10 +271,10 @@ if __name__ == '__main__':
                 print 'learning_rate:', learning_rate, '  gamma:', gamma
 
                 with open(LOG_FILE_NAME, "a") as file:
-                    epoch = '--------------------epoch %d--------------------' % epoch
-                    lr = 'learning_rate:', learning_rate, '  gamma:', gamma
+                    epoch_str = '--------------------epoch %d--------------------' % epoch
+                    lr_str = 'learning_rate:', learning_rate, '  gamma:', gamma
 
-                    file.write("%s\n%s\n" % (epoch, lr))
+                    file.write("%s\n%s\n" % (epoch_str, lr_str))
 
                 for batch in batches:
                     feed_dict = feed_dictionary(model, batch, rho, gamma,
