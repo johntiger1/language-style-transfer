@@ -1,0 +1,1 @@
+srun --gres=gpu:1 -c 2 -l -p gpu sleep 15 &
