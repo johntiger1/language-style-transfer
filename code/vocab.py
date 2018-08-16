@@ -26,7 +26,7 @@ class Vocabulary(object):
             self.embedding[i] /= LA.norm(self.embedding[i])
 
 
-def build_vocab(data, path, min_occur=20):
+def build_vocab(data, path, min_occur=5):
     word2id = {'<pad>':0, '<go>':1, '<eos>':2, '<unk>':3}
     id2word = ['<pad>', '<go>', '<eos>', '<unk>']
 

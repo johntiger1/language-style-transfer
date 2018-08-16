@@ -90,7 +90,7 @@ def load_arguments():
             default='1,2,3,4,5')
     argparser.add_argument('--n_filters',
             type=int,
-            default=64)
+            default=128)
 
     args = argparser.parse_args()
 
